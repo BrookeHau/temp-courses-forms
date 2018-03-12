@@ -16,8 +16,42 @@
 			<a th:href="@{/course(id=${course.id})}" th:text="${course.name}"></a>
 		</h2>
 	</div>
+	<form method="POST">
+		<div>
+			<label>Enter course name </label> <input type="text" name="courseName" />
+		</div>
+
+		<div>
+			<label>Enter description</label> <input type="text"
+				name="description" />
+		</div>
+
+		<div>
+			<label>Enter instructor</label> <input type="text" name="instructorName" />
+		</div>
+		<div>
+			<button th:formaction="@{/add-course}">add</button>
+		</div>
+		
+		<div>
+			<label>Enter course name to delete</label> 
+			<input type="text" name="courseName" />
+		</div>
+		<div>
+			<button th:formaction="@{/remove-course}">remove</button>
+		</div>
+	</form>
 	
-	
+	<form method="POST">
+		<div>
+			<label>Enter name of instructor</label> <input type="text" name="instructorName" />
+		</div>		
+		<div>
+			<button th:formaction="@{/see-courses}">Enter</button>
+		</div>
+	</form>
+
+
 
 </body>
 </html>
