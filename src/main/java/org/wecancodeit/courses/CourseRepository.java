@@ -9,6 +9,9 @@ public interface CourseRepository extends CrudRepository<Course, Long> {
 	Course findByNameIgnoreCase(String name);
 
 	Collection<Course> findByInstructor(Instructor instructor);
+	
+	Collection<Course> findAllByOrderByNameAsc();
+	
 
 
 }

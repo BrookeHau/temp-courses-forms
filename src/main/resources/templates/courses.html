@@ -18,7 +18,7 @@
 	</div>
 	<form method="POST">
 		<div>
-			<label>Enter course name </label> <input type="text" name="courseName" />
+			<label>Enter course name</label> <input type="text" name="courseName" />
 		</div>
 
 		<div>
@@ -32,7 +32,8 @@
 		<div>
 			<button th:formaction="@{/add-course}">add</button>
 		</div>
-		
+		</form>
+		<form method="DELETE">
 		<div>
 			<label>Enter course name to delete</label> 
 			<input type="text" name="courseName" />
@@ -50,6 +51,11 @@
 			<button th:formaction="@{/see-courses}">Enter</button>
 		</div>
 	</form>
+	<form method="GET">		
+		<div>
+			<button th:formaction="@{/sort-courses}">Sort</button>
+		</div>
+	</form> 
 
 
 

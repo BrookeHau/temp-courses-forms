@@ -30,10 +30,15 @@ public class CourseController {
 
 	@RequestMapping("/add-course")
 	public String addCourse(String courseName, String description, String instructorName) {
-		
-		Instructor instructor = instRepo.findByInstructorName(instructorName);
-		if (courseRepo.findByNameIgnoreCase(courseName) == null) {
-			
+
+		if(courseRepo.findByNameIgnoreCase(courseName) == null) {
+			Instructor instructor = instRepo.findByInstructorName(instructorName);
+			Course newCourse = new Course(courseName, description, instructor);
+			newCourse = courseRepo.save(newCourse);
+		} 
+		if (instRepo.findByInstructorName(instructorName) == null) {
+			Instructor instructor = new Instructor(instructorName);
+			instructor = instRepo.save(instructor);
 			Course newCourse = new Course(courseName, description, instructor);
 			newCourse = courseRepo.save(newCourse);
 		}
@@ -55,11 +60,20 @@ public class CourseController {
 		courseRepo.delete(id);
 		return "redirect:/show-courses";
 	}
-	
+
 	@RequestMapping("/see-courses")
 	public String showInstructorCourses(String instructorName, Model model) {
 		Instructor instructor = instRepo.findByInstructorName(instructorName);
 		model.addAttribute("courses", courseRepo.findByInstructor(instructor));
 		return "instructor";
 	}
+
+	// how to customize application: through queries as in sort by or find by name
+	// etc
+	@RequestMapping("/sort-courses")
+	public String sortAllCourses(Model model) {
+		model.addAttribute("courses", courseRepo.findAllByOrderByNameAsc());
+		return "courses";
+	}
+
 }
